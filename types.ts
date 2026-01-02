@@ -8,6 +8,7 @@ export interface Movie {
   summary: string;
   recommender?: string; // If the chat log identifies who recommended it
   sentiment?: 'positive' | 'neutral' | 'negative' | 'mixed';
+  mentionCount?: number; // How many times this movie was discussed/mentioned
 }
 
 export interface AnalysisResult {

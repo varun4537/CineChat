@@ -9,7 +9,9 @@ export const analyzeChatLog = async (chatText: string): Promise<Movie[]> => {
       model: 'gemini-3-flash-preview',
       contents: `
         Analyze the following chat log from a movie club. 
-        Extract every movie mentioned that is being recommended, discussed, or reviewed.
+        Extract unique movies that are being recommended, discussed, or reviewed.
+        
+        If a movie is mentioned multiple times across the chat, consolidate it into a single entry but increase the 'mentionCount'.
         
         For each movie, infer or extract the following details:
         1. Title (Correct full title)
@@ -19,13 +21,13 @@ export const analyzeChatLog = async (chatText: string): Promise<Movie[]> => {
         5. Language (Primary language of the film)
         6. Country (Country of origin)
         7. Summary (A brief 1-sentence synopsis)
-        8. Recommender (The name of the person who recommended it, if apparent in the text structure like "User: I liked X")
-        9. Sentiment (The general vibe of the recommendation: positive, neutral, negative, mixed)
+        8. Recommender (The name of the person who FIRST recommended it or is most associated with it. If unclear, leave null)
+        9. Sentiment (The general vibe of the discussion: positive, neutral, negative, mixed)
+        10. Mention Count (How many times it was discussed or mentioned in the log. Minimum 1.)
 
         Chat Log content:
         ${chatText.substring(0, 100000)} 
-        // Note: Truncating to ~100k characters for safety, though Gemini can handle more. 
-        // In a real prod app, we'd chunk this.
+        // Note: Truncating to ~100k characters for safety.
       `,
       config: {
         responseMimeType: "application/json",
@@ -46,8 +48,9 @@ export const analyzeChatLog = async (chatText: string): Promise<Movie[]> => {
                 type: Type.STRING, 
                 enum: ['positive', 'neutral', 'negative', 'mixed'] 
               },
+              mentionCount: { type: Type.INTEGER, description: "Number of times mentioned/discussed" }
             },
-            required: ["title", "genres", "language", "country", "summary"],
+            required: ["title", "genres", "language", "country", "summary", "mentionCount"],
           },
         },
       },

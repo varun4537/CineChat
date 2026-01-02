@@ -1,20 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# CineChat Analyzer 🎬
 
-# Run and deploy your AI Studio app
+**CineChat Analyzer** is an AI-powered tool designed to turn your messy movie club chat logs into beautiful, actionable insights. 
 
-This contains everything you need to run your app locally.
+Using Google's **Gemini 1.5 Flash**, it parses raw text conversation, extracts movie recommendations, identifies who suggested them, and classifies them by genre, country, sentiment, and more.
 
-View your app in AI Studio: https://ai.studio/apps/drive/19a-3mitYdkpexYcfiq43XXxjJjk7diBg
+## 🚀 Features
 
-## Run Locally
+- **Smart Extraction**: Automatically identifies movie titles from casual conversation text (WhatsApp, Telegram, Discord exports).
+- **Auto-Classification**: detailed metadata for every movie:
+  - 🎭 **Genre & Style**
+  - 🌍 **Country & Language**
+  - 📅 **Release Year / Decade**
+  - 👤 **Director**
+- **Deep Insights**:
+  - **Most Discussed Movies**: See which films generated the most buzz.
+  - **Top Recommenders**: Find out who in your group suggests the most movies.
+  - **Sentiment Analysis**: Understand if the group loved or hated the suggestions.
+  - **Decade Breakdown**: Visualise your group's taste through time.
+- **Interactive Dashboard**: Filter by genre, search by title, and explore visualizations.
 
-**Prerequisites:**  Node.js
+## 🛠️ How to Use
 
+1. **Export Chat**: Export your chat history from your messaging app as a `.txt` file.
+2. **Upload**: Drag and drop the file into CineChat Analyzer.
+3. **Analyze**: Watch as Gemini extracts and structures the data in seconds.
+4. **Explore**: Browse the dashboard to find your next watch!
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🤖 Powered By
+
+- **Google Gemini API** (Gemini 1.5 Flash for speed and accuracy)
+- **React 19**
+- **Tailwind CSS**
+- **Recharts** for visualization
+- **Lucide React** for iconography
