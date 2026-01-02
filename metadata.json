@@ -1,0 +1,5 @@
+{
+  "name": "CineChat Analyzer",
+  "description": "Extract, classify, and visualize movie recommendations from your movie club chat logs using Gemini.",
+  "requestFramePermissions": []
+}
